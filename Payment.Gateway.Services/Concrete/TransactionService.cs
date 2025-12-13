@@ -70,6 +70,7 @@ namespace Payment.Gateway.Services.Concrete
             return transaction ?? throw new KeyNotFoundException($"Transaction not found for number: {transactionNumber}");
         }
 
+        #region If Required
         public async Task<Transaction> GetTransactionByIdAsync(Guid id)
         {
             var transaction = await _db.Transactions
@@ -86,6 +87,7 @@ namespace Payment.Gateway.Services.Concrete
                                        .FirstOrDefaultAsync(x => x.OrderId == orderId);
 
             return transaction ?? throw new KeyNotFoundException($"Transaction not found for order id: {orderId}");
-        }
+        } 
+        #endregion
     }
 }

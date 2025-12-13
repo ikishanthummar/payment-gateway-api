@@ -6,5 +6,7 @@ namespace Payment.Gateway.Services.Interface
     public interface IPaymentService
     {
         Task<TransactionView> InitiatePaymentAsync(PaymentInitiateRequest req);
+
+        Task<List<PaymentProviderDDLView>> GetPaymentProvidersDDLAsync();
     }
 }

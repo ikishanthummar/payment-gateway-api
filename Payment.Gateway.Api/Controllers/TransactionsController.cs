@@ -32,20 +32,22 @@ namespace Payment.Gateway.Api.Controllers
             return Ok(t);
         }
 
-        [HttpGet("by-id/{id:guid}")]
-        public async Task<IActionResult> GetTransactionById(Guid id)
-        {
-            var t = await _service.GetTransactionByIdAsync(id);
-            if (t == null) return NotFound();
-            return Ok(t);
-        }
+        #region If Required
+        //[HttpGet("by-id/{id:guid}")]
+        //public async Task<IActionResult> GetTransactionById(Guid id)
+        //{
+        //    var t = await _service.GetTransactionByIdAsync(id);
+        //    if (t == null) return NotFound();
+        //    return Ok(t);
+        //}
 
-        [HttpGet("by-order-id/{orderId:guid}")]
-        public async Task<IActionResult> GetTransactionByOrderId(Guid orderId)
-        {
-            var t = await _service.GetTransactionByOrderIdAsync(orderId);
-            if (t == null) return NotFound();
-            return Ok(t);
-        }
+        //[HttpGet("by-order-id/{orderId:guid}")]
+        //public async Task<IActionResult> GetTransactionByOrderId(Guid orderId)
+        //{
+        //    var t = await _service.GetTransactionByOrderIdAsync(orderId);
+        //    if (t == null) return NotFound();
+        //    return Ok(t);
+        //} 
+        #endregion
     }
 }

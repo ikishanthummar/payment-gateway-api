@@ -53,5 +53,20 @@ namespace Payment.Gateway.Services.Concrete
 
             return response;
         }
+
+        public async Task<List<PaymentProviderDDLView>> GetPaymentProvidersDDLAsync()
+        {
+            var query = _db.PaymentProviders.AsNoTracking().Where(x => x.IsActive);
+            
+            var projectedQuery = query.Select(x => new PaymentProviderDDLView
+            {
+                Id = x.Id,
+                Name = x.Name,
+            });
+
+            var result = await projectedQuery.ToListAsync();
+
+            return result;
+        }
     }
 }

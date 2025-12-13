@@ -18,7 +18,7 @@ namespace Payment.Gateway.Api.Middleware
 
         public async Task InvokeAsync(HttpContext context)
         {
-            if (!context.Request.Path.StartsWithSegments("/api/payments/callback"))
+            if (!context.Request.Path.StartsWithSegments("/api/webhook/callback"))
             {
                 await _next(context);
                 return;

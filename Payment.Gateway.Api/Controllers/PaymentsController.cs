@@ -18,23 +18,19 @@ namespace Payment.Gateway.Api.Controllers
             _webhookService = webhookService;
         }
 
+        [HttpGet("payment-providers")]
+        public async Task<IActionResult> GetPaymentProvidersDDLAsync()
+        {
+            var result = await _paymentService.GetPaymentProvidersDDLAsync();
+            return Ok(result);
+        }
+
         [HttpPost("initiate")]
         public async Task<IActionResult> InitiatePayment([FromBody] PaymentInitiateRequest req)
         {
             if (req == null) return BadRequest();
             var result = await _paymentService.InitiatePaymentAsync(req);
             return Ok(result);
-        }
-
-        [HttpPost("callback")]
-        public async Task<IActionResult> PaymentCallback([FromBody] PaymentCallbackRequest dto)
-        {
-            var rawBody = HttpContext.Items["RawWebhookBody"]?.ToString() ?? "";
-            var signature = Request.Headers["X-Signature"].ToString();
-
-            await _webhookService.ProcessPaymentCallbackAsync(dto, rawBody, signature);
-
-            return Ok(new { message = "Callback processed" });
         }
     }
 }

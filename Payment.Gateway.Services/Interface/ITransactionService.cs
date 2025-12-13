@@ -10,8 +10,10 @@ namespace Payment.Gateway.Services.Interface
 
         Task<Transaction> GetTransactionByTNumberAsync(string transactionNumber);
 
-        Task<Transaction> GetTransactionByIdAsync(Guid id);
+        #region 
+        //Task<Transaction> GetTransactionByIdAsync(Guid id);
 
-        Task<Transaction> GetTransactionByOrderIdAsync(Guid orderId);
+        //Task<Transaction> GetTransactionByOrderIdAsync(Guid orderId); 
+        #endregion
     }
 }
