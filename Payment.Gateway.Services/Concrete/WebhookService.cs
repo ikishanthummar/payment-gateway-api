@@ -15,7 +15,7 @@ namespace Payment.Gateway.Services.Concrete
             _db = db;
         }
 
-        public async Task ProcessPaymentCallbackAsync(PaymentCallbackDto callback, string rawPayload, string signature)
+        public async Task ProcessPaymentCallbackAsync(PaymentCallbackRequest callback, string rawPayload, string signature)
         {
             var transaction = await _db.Transactions.FirstOrDefaultAsync(t => t.TransactionNumber == callback.TransactionNumber);
 

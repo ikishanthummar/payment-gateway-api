@@ -2,7 +2,7 @@
 
 namespace Payment.Gateway.DTOs.Payments
 {
-    public class PaymentCallbackDto
+    public class PaymentCallbackRequest
     {
         public string TransactionNumber { get; set; } = string.Empty;
         public PaymentStatus Status { get; set; }

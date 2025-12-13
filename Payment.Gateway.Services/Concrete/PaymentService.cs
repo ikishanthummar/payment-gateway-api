@@ -17,7 +17,7 @@ namespace Payment.Gateway.Services.Concrete
             _db = db;
         }
 
-        public async Task<TransactionView> InitiatePaymentAsync(PaymentInitiateRequestDto req)
+        public async Task<TransactionView> InitiatePaymentAsync(PaymentInitiateRequest req)
         {
             var transaction = new Transaction();
 

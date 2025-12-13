@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Payment.Gateway.DTOs.Payments
 {
-    public class PaymentInitiateRequestDto
+    public class PaymentInitiateRequest
     {
         [Required]
         public Guid OrderId { get; set; }

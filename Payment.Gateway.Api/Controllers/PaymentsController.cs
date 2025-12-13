@@ -19,7 +19,7 @@ namespace Payment.Gateway.Api.Controllers
         }
 
         [HttpPost("initiate")]
-        public async Task<IActionResult> InitiatePayment([FromBody] PaymentInitiateRequestDto req)
+        public async Task<IActionResult> InitiatePayment([FromBody] PaymentInitiateRequest req)
         {
             if (req == null) return BadRequest();
             var result = await _paymentService.InitiatePaymentAsync(req);
@@ -27,7 +27,7 @@ namespace Payment.Gateway.Api.Controllers
         }
 
         [HttpPost("callback")]
-        public async Task<IActionResult> PaymentCallback([FromBody] PaymentCallbackDto dto)
+        public async Task<IActionResult> PaymentCallback([FromBody] PaymentCallbackRequest dto)
         {
             var rawBody = HttpContext.Items["RawWebhookBody"]?.ToString() ?? "";
             var signature = Request.Headers["X-Signature"].ToString();
