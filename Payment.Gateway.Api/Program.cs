@@ -16,11 +16,12 @@ builder.Services.AddDbContext<AppDBContext>(options =>
 
 builder.Services.AddScoped<IPaymentService, PaymentService>();
 builder.Services.AddScoped<ITransactionService, TransactionService>();
+builder.Services.AddScoped<IWebhookService, WebhookService>();
 
 var app = builder.Build();
 
 app.UseMiddleware<ExceptionMiddleware>();
-app.UseMiddleware<HmacVerificationMiddleware>();
+app.UseMiddleware<WebhookHmacVerificationMiddleware>();
 
 if (app.Environment.IsDevelopment())
 {

@@ -8,19 +8,33 @@ namespace Payment.Gateway.Api.Controllers
     [ApiController]
     public class PaymentsController : ControllerBase
     {
-        private readonly IPaymentService _service;
+        private readonly IPaymentService _paymentService;
+        private readonly IWebhookService _webhookService;
 
-        public PaymentsController(IPaymentService service)
+        public PaymentsController(IPaymentService paymentService,
+                                  IWebhookService webhookService)
         {
-            _service = service;
+            _paymentService = paymentService;
+            _webhookService = webhookService;
         }
 
         [HttpPost("initiate")]
         public async Task<IActionResult> InitiatePayment([FromBody] PaymentInitiateRequestDto req)
         {
             if (req == null) return BadRequest();
-            var result = await _service.InitiatePaymentAsync(req);
+            var result = await _paymentService.InitiatePaymentAsync(req);
             return Ok(result);
+        }
+
+        [HttpPost("callback")]
+        public async Task<IActionResult> PaymentCallback([FromBody] PaymentCallbackDto dto)
+        {
+            var rawBody = HttpContext.Items["RawWebhookBody"]?.ToString() ?? "";
+            var signature = Request.Headers["X-Signature"].ToString();
+
+            await _webhookService.ProcessPaymentCallbackAsync(dto, rawBody, signature);
+
+            return Ok(new { message = "Callback processed" });
         }
     }
 }
