@@ -44,8 +44,7 @@ namespace Payment.Gateway.Services.Concrete
 
                 _db.WebhookLogs.Add(log);
 
-                transaction.Status = callback.Status.Equals("SUCCESS", StringComparison.OrdinalIgnoreCase) ? "Success" : "Failed";
-
+                transaction.Status = callback.Status.ToString();
                 transaction.UpdatedOn = DateTime.UtcNow;
 
                 await _db.SaveChangesAsync();

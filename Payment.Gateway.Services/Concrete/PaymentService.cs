@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Payment.Gateway.Data;
 using Payment.Gateway.Data.Entities;
+using Payment.Gateway.Data.Enum;
 using Payment.Gateway.DTOs.Payments;
 using Payment.Gateway.DTOs.Transaction;
 using Payment.Gateway.Services.Interface;
@@ -32,7 +33,7 @@ namespace Payment.Gateway.Services.Concrete
             transaction.ProviderReference = req.ProviderReference;
             transaction.Amount = req.Amount;
             transaction.CreatedOn = DateTime.UtcNow;
-            transaction.Status = "Pending";
+            transaction.Status = PaymentStatus.Pending.ToString();
 
             _db.Transactions.Add(transaction);
             await _db.SaveChangesAsync();
