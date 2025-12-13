@@ -1,10 +1,8 @@
-﻿
-
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Payment.Gateway.Data;
 using Payment.Gateway.Data.Entities;
-using Payment.Gateway.DTOs;
 using Payment.Gateway.DTOs.Common;
+using Payment.Gateway.DTOs.Transaction;
 using Payment.Gateway.Services.Common;
 using Payment.Gateway.Services.Interface;
 using System.Linq.Expressions;

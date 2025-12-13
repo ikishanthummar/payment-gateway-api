@@ -1,12 +1,5 @@
-﻿using Payment.Gateway.DTOs.Common;
-
-namespace Payment.Gateway.DTOs
+﻿namespace Payment.Gateway.DTOs.Transaction
 {
-    public class TransactionListRequestDto : PageRequest
-    {
-        
-    }
-
     public class TransactionView
     {
         public Guid Id { get; set; }

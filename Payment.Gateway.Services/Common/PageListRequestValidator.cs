@@ -1,4 +1,4 @@
-﻿using Payment.Gateway.DTOs;
+﻿using Payment.Gateway.DTOs.Transaction;
 
 namespace Payment.Gateway.Services.Common
 {

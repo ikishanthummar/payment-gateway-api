@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Payment.Gateway.DTOs;
+using Payment.Gateway.DTOs.Transaction;
 using Payment.Gateway.Services.Common;
 using Payment.Gateway.Services.Interface;
 
@@ -24,28 +24,28 @@ namespace Payment.Gateway.Api.Controllers
             return Ok(result);
         }
 
-        //[HttpGet("by-transaction-number/{transactionNumber}")]
-        //public async Task<IActionResult> GetTransactionByTNumber(string transactionNumber)
-        //{
-        //    var t = await _service.GetTransactionByTNumberAsync(transactionNumber);
-        //    if (t == null) return NotFound();
-        //    return Ok(t);
-        //}
+        [HttpGet("by-transaction-number/{transactionNumber}")]
+        public async Task<IActionResult> GetTransactionByTNumber(string transactionNumber)
+        {
+            var t = await _service.GetTransactionByTNumberAsync(transactionNumber);
+            if (t == null) return NotFound();
+            return Ok(t);
+        }
 
-        //[HttpGet("by-id/{id:guid}")]
-        //public async Task<IActionResult> GetTransactionById(Guid id)
-        //{
-        //    var t = await _service.GetTransactionByIdAsync(id);
-        //    if (t == null) return NotFound();
-        //    return Ok(t);
-        //}
+        [HttpGet("by-id/{id:guid}")]
+        public async Task<IActionResult> GetTransactionById(Guid id)
+        {
+            var t = await _service.GetTransactionByIdAsync(id);
+            if (t == null) return NotFound();
+            return Ok(t);
+        }
 
-        //[HttpGet("by-order-id/{orderId:guid}")]
-        //public async Task<IActionResult> GetTransactionByOrderId(Guid orderId)
-        //{
-        //    var t = await _service.GetTransactionByOrderIdAsync(orderId);
-        //    if (t == null) return NotFound();
-        //    return Ok(t);
-        //}
+        [HttpGet("by-order-id/{orderId:guid}")]
+        public async Task<IActionResult> GetTransactionByOrderId(Guid orderId)
+        {
+            var t = await _service.GetTransactionByOrderIdAsync(orderId);
+            if (t == null) return NotFound();
+            return Ok(t);
+        }
     }
 }

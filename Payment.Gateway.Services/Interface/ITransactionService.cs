@@ -1,6 +1,6 @@
 ﻿using Payment.Gateway.Data.Entities;
-using Payment.Gateway.DTOs;
 using Payment.Gateway.DTOs.Common;
+using Payment.Gateway.DTOs.Transaction;
 
 namespace Payment.Gateway.Services.Interface
 {

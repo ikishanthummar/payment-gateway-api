@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Payment.Gateway.Data;
 using Payment.Gateway.Data.Entities;
-using Payment.Gateway.DTOs;
 using Payment.Gateway.DTOs.Payments;
+using Payment.Gateway.DTOs.Transaction;
 using Payment.Gateway.Services.Interface;
 
 namespace Payment.Gateway.Services.Concrete
@@ -51,21 +51,6 @@ namespace Payment.Gateway.Services.Concrete
             };
 
             return response;
-        }
-
-        public async Task<Transaction> UpdateStatusAsync(Guid id, string status, string providerRef = null)
-        {
-            using var tx = await _db.Database.BeginTransactionAsync();
-            var t = await _db.Transactions.FirstOrDefaultAsync(x => x.Id == id);
-            if (t == null) return null;
-
-            t.Status = status;
-            if (!string.IsNullOrWhiteSpace(providerRef)) t.ProviderReference = providerRef;
-            t.UpdatedOn = DateTime.UtcNow;
-
-            await _db.SaveChangesAsync();
-            await tx.CommitAsync();
-            return t;
         }
     }
 }
