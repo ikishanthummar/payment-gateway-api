@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Payment.Gateway.Data.Entities;
+using Payment.Gateway.Data.Enum;
 
 namespace Payment.Gateway.Data
 {
@@ -29,7 +30,13 @@ namespace Payment.Gateway.Data
 
                 entity.Property(t => t.Status)
                       .IsRequired()
-                      .HasMaxLength(50);
+                      .HasMaxLength(50)
+                      .HasConversion(
+                          v => v,
+                          v => System.Enum.IsDefined(typeof(PaymentStatus), v)
+                                  ? v
+                                  : PaymentStatus.Pending.ToString()
+                      );
 
                 entity.Property(t => t.Amount)
                       .HasColumnType("decimal(18,2)");

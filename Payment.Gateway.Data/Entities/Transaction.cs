@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Payment.Gateway.Data.Enum;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Payment.Gateway.Data.Entities
@@ -27,7 +28,7 @@ namespace Payment.Gateway.Data.Entities
 
         [Required]
         [MaxLength(50)]
-        public string Status { get; set; } = "Pending";
+        public string Status { get; set; } = PaymentStatus.Pending.ToString();
 
         public DateTime CreatedOn { get; set; } = DateTime.UtcNow;
 

@@ -3,11 +3,16 @@ using Payment.Gateway.Api.Middleware;
 using Payment.Gateway.Data;
 using Payment.Gateway.Services.Concrete;
 using Payment.Gateway.Services.Interface;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddControllers()
+                .AddJsonOptions(o =>
+                  o.JsonSerializerOptions.Converters.Add(
+                    new JsonStringEnumConverter(namingPolicy: null, allowIntegerValues: false)
+                  ));
 
-builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 builder.Services.AddSwaggerGen();
 
