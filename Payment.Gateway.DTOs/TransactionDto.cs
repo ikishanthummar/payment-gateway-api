@@ -1,18 +1,7 @@
 ﻿using Payment.Gateway.DTOs.Common;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Payment.Gateway.DTOs
 {
-    public class CreateTransactionReq
-    {
-        [MaxLength(200)]
-        public string ProviderReference { get; set; }
-
-        [Column(TypeName = "decimal(18,2)")]
-        public decimal Amount { get; set; }
-    }
-
     public class TransactionListRequestDto : PageRequest
     {
         

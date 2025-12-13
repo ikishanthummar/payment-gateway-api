@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Payment.Gateway.DTOs;
-using Payment.Gateway.Services;
+using Payment.Gateway.Services.Interface;
 
 namespace Payment.Gateway.Api.Controllers
 {

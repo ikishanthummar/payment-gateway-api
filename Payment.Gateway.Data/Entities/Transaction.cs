@@ -32,5 +32,7 @@ namespace Payment.Gateway.Data.Entities
         public DateTime CreatedOn { get; set; } = DateTime.UtcNow;
 
         public DateTime? UpdatedOn { get; set; }
+
+        public virtual ICollection<WebhookLog> WebhookLogs { get; set; } = new HashSet<WebhookLog>();
     }
 }

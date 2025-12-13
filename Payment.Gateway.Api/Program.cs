@@ -1,7 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Payment.Gateway.Api.Middleware;
 using Payment.Gateway.Data;
-using Payment.Gateway.Services;
+using Payment.Gateway.Services.Concrete;
+using Payment.Gateway.Services.Interface;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,7 +14,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<AppDBContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-builder.Services.AddScoped<IPaymentService, MockPaymentService>();
+builder.Services.AddScoped<IPaymentService, PaymentService>();
+builder.Services.AddScoped<ITransactionService, TransactionService>();
 
 var app = builder.Build();
 
