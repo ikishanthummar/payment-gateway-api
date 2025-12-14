@@ -26,7 +26,7 @@ namespace Payment.Gateway.Data
                       .HasMaxLength(100);
 
                 entity.HasIndex(t => t.OrderId)
-                      .IsUnique(false);
+                      .IsUnique();
 
                 entity.Property(t => t.Status)
                       .IsRequired()
